@@ -3,7 +3,19 @@ module.exports = {
   siteUrl: "https://itnotezs.com",
   generateRobotsTxt: true,
   generateIndexSitemap: true,
-  changefreq: "weekly",
-  priority: 0.7,
-  exclude: ["/404", "/500"],
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+    ],
+  },
+  exclude: ["/server-sitemap.xml"],
+  alternateRefs: [
+    {
+      href: "https://itnotezs.com",
+      hreflang: "en",
+    },
+  ],
 };

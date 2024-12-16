@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/toaster";
 import type { Metadata } from "next";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -82,6 +83,19 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "ITNOTEZS",
+  url: "https://itnotezs.com",
+  logo: "https://itnotezs.com/LOGO.jpg",
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "your-phone",
+    contactType: "customer service",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -89,6 +103,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </Head>
       <body className={inter.className}>
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
