@@ -1,9 +1,11 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /api/*
 
 # Host
 Host: https://itnotezs.com
 
 # Sitemaps
 Sitemap: https://itnotezs.com/sitemap.xml
+Sitemap: https://itnotezs.com/server-sitemap.xml

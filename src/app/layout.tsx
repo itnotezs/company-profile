@@ -1,37 +1,25 @@
+// app/layout.tsx
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Toaster } from "@/components/ui/toaster";
-import type { Metadata } from "next";
-import Head from "next/head";
+import type { Metadata, Viewport } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://itnotezs.com"), // Update with your domain
+  metadataBase: new URL("https://itnotezs.com"),
   title: {
-    default: "ITNOTEZS - Your IT Solutions Partner",
+    default: "ITNOTEZS - Solusi IT Profesional",
     template: "%s | ITNOTEZS",
   },
-  description:
-    "Professional IT services and consulting for all your technology needs. Expert solutions in hardware, software, web development, and IT infrastructure.",
-  keywords: [
-    "IT Solutions",
-    "Web Development",
-    "Hardware Solutions",
-    "Network Configuration",
-    "IT Services",
-    "Technical Support",
-  ],
+  description: "Solusi teknologi terpercaya untuk kebutuhan IT bisnis Anda",
+  applicationName: "ITNOTEZS",
   authors: [{ name: "ITNOTEZS" }],
-  creator: "ITNOTEZS",
-  publisher: "ITNOTEZS",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+  generator: "Next.js",
+  keywords: ["IT Solutions", "Jasa IT", "IT Service"],
+  referrer: "origin-when-cross-origin",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -46,30 +34,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/site.webmanifest",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://itnotezs.com",
-    title: "ITNOTEZS - Your IT Solutions Partner",
-    description:
-      "Professional IT services and consulting for all your technology needs",
-    siteName: "ITNOTEZS",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "ITNOTEZS - IT Solutions",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "ITNOTEZS - Your IT Solutions Partner",
-    description:
-      "Professional IT services and consulting for all your technology needs",
-    images: ["/og-image.jpg"],
-  },
   robots: {
     index: true,
     follow: true,
@@ -81,19 +45,41 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  alternates: {
+    canonical: "https://itnotezs.com",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1B365D",
+  colorScheme: "light dark",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://itnotezs.com",
   name: "ITNOTEZS",
   url: "https://itnotezs.com",
   logo: "https://itnotezs.com/LOGO.jpg",
+  description: "Penyedia layanan IT profesional untuk bisnis di Indonesia",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Jakarta",
+    addressRegion: "DKI Jakarta",
+    addressCountry: "ID",
+  },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "your-phone",
+    telephone: "08980056345",
     contactType: "customer service",
+    areaServed: "ID",
+    availableLanguage: ["id", "en"],
   },
+  sameAs: ["https://facebook.com/itnotezs", "https://instagram.com/itnotezs"],
 };
 
 export default function RootLayout({
@@ -102,14 +88,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <Head>
+    <html lang="id">
+      <body className={inter.className}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
         />
-      </Head>
-      <body className={inter.className}>
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
           {children}
